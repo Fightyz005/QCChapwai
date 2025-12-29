@@ -1,0 +1,449 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\QcChapWai\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\checklist\\inspect.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\checklist\\inspect.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\checklist\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\checklist\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\checklistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\checklistservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\models\\inspectionchecklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:models\\inspectionchecklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\controllers\\checklistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:controllers\\checklistcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\models\\documentinspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:models\\documentinspection.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\productionorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\productionorderservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\inspectcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\inspectcodeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\models\\materialmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:models\\materialmaster.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\materialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\materialservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\checklist\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\checklist\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\machineservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\controllers\\materialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:controllers\\materialcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\views\\material\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:views\\material\\create.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|d:\\qcchapwai\\services\\materialmasterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A30E8A99-F071-40EE-B5C6-E67836CE1C30}|QcChapWai.csproj|solutionrelative:services\\materialmasterservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 1362,
+          "SelectedChildIndex": 11,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:4:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:3:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ChecklistService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\ChecklistService.cs",
+              "RelativeDocumentMoniker": "Services\\ChecklistService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\ChecklistService.cs",
+              "RelativeToolTip": "Services\\ChecklistService.cs",
+              "ViewState": "AgIAAEEAAAAAAAAAAAAkwBQAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-29T02:29:14.934Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "InspectionChecklist.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Models\\InspectionChecklist.cs",
+              "RelativeDocumentMoniker": "Models\\InspectionChecklist.cs",
+              "ToolTip": "D:\\QcChapWai\\Models\\InspectionChecklist.cs",
+              "RelativeToolTip": "Models\\InspectionChecklist.cs",
+              "ViewState": "AgIAAFEAAAAAAAAAAADwv2sAAAAxAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T02:55:15.385Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "MaterialMaster.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Models\\MaterialMaster.cs",
+              "RelativeDocumentMoniker": "Models\\MaterialMaster.cs",
+              "ToolTip": "D:\\QcChapWai\\Models\\MaterialMaster.cs",
+              "RelativeToolTip": "Models\\MaterialMaster.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T05:52:29.272Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChecklistController.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Controllers\\ChecklistController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChecklistController.cs",
+              "ToolTip": "D:\\QcChapWai\\Controllers\\ChecklistController.cs",
+              "RelativeToolTip": "Controllers\\ChecklistController.cs",
+              "ViewState": "AgIAAG0BAAAAAAAAAAAswIEBAABXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-18T02:52:25.086Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAAHAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-15T04:42:19.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Inspect.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Checklist\\Inspect.cshtml",
+              "RelativeDocumentMoniker": "Views\\Checklist\\Inspect.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Checklist\\Inspect.cshtml",
+              "RelativeToolTip": "Views\\Checklist\\Inspect.cshtml",
+              "ViewState": "AgIAACYBAAAAAAAAAAAAAF4BAAA6AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-16T03:25:44.62Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Checklist\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Checklist\\Create.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Checklist\\Create.cshtml",
+              "RelativeToolTip": "Views\\Checklist\\Create.cshtml",
+              "ViewState": "AgIAAL0AAAAAAAAAAAAwwL0AAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-16T02:54:34.177Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ProductionOrderService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\ProductionOrderService.cs",
+              "RelativeDocumentMoniker": "Services\\ProductionOrderService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\ProductionOrderService.cs",
+              "RelativeToolTip": "Services\\ProductionOrderService.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAApwBcAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T03:26:39.051Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "InspectCodeService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\InspectCodeService.cs",
+              "RelativeDocumentMoniker": "Services\\InspectCodeService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\InspectCodeService.cs",
+              "RelativeToolTip": "Services\\InspectCodeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-22T11:11:44.336Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AgIAAHEAAAAAAAAAAAAWwHcAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T04:37:18.47Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "DocumentInspection.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Models\\DocumentInspection.cs",
+              "RelativeDocumentMoniker": "Models\\DocumentInspection.cs",
+              "ToolTip": "D:\\QcChapWai\\Models\\DocumentInspection.cs",
+              "RelativeToolTip": "Models\\DocumentInspection.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAYAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T02:49:41.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AccountController.cs",
+              "ToolTip": "D:\\QcChapWai\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Controllers\\AccountController.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwDMAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T03:40:07.474Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Views\\Account\\Login.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Account\\Login.cshtml",
+              "RelativeToolTip": "Views\\Account\\Login.cshtml",
+              "ViewState": "AgIAAJ8AAAAAAAAAAAAAAJkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-12-26T10:15:11.439Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\QcChapWai\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T10:53:04.239Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\QcChapWai\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T04:41:10.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Models\\ErrorViewModel.cs",
+              "ToolTip": "D:\\QcChapWai\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Models\\ErrorViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-26T03:41:39.862Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Checklist\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Checklist\\Index.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Checklist\\Index.cshtml",
+              "RelativeToolTip": "Views\\Checklist\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEIAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-18T03:07:57.225Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "MaterialService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\MaterialService.cs",
+              "RelativeDocumentMoniker": "Services\\MaterialService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\MaterialService.cs",
+              "RelativeToolTip": "Services\\MaterialService.cs",
+              "ViewState": "AgIAAOYAAAAAAAAAAAA4wN0AAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T04:36:52.674Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MachineService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\MachineService.cs",
+              "RelativeDocumentMoniker": "Services\\MachineService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\MachineService.cs",
+              "RelativeToolTip": "Services\\MachineService.cs",
+              "ViewState": "AgIAAIQAAAAAAAAAAAAowJoAAAA/AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-25T03:27:12.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "MaterialMasterService.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Services\\MaterialMasterService.cs",
+              "RelativeDocumentMoniker": "Services\\MaterialMasterService.cs",
+              "ToolTip": "D:\\QcChapWai\\Services\\MaterialMasterService.cs",
+              "RelativeToolTip": "Services\\MaterialMasterService.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAowGMAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-12-17T05:53:38.589Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MaterialController.cs",
+              "DocumentMoniker": "D:\\QcChapWai\\Controllers\\MaterialController.cs",
+              "RelativeDocumentMoniker": "Controllers\\MaterialController.cs",
+              "ToolTip": "D:\\QcChapWai\\Controllers\\MaterialController.cs",
+              "RelativeToolTip": "Controllers\\MaterialController.cs",
+              "ViewState": "AgIAAF8AAAAAAAAAAAAgwIkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T04:39:02.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "Create.cshtml",
+              "DocumentMoniker": "D:\\QcChapWai\\Views\\Material\\Create.cshtml",
+              "RelativeDocumentMoniker": "Views\\Material\\Create.cshtml",
+              "ToolTip": "D:\\QcChapWai\\Views\\Material\\Create.cshtml",
+              "RelativeToolTip": "Views\\Material\\Create.cshtml",
+              "ViewState": "AgIAAK4BAAAAAAAAAAAewLkBAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-08-15T04:48:56.237Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 2496,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cdbdee54-b399-484b-b763-db2c3393d646}"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 755,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
