@@ -1,0 +1,209 @@
+﻿@{
+    ViewData["Title"] = "เข้าสู่ระบบ";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QC CHAP-WAI</title>
+
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #1d4ed8 100%);
+            min-height: 100vh;
+        }
+
+        .login-card {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.25);
+            backdrop-filter: blur(20px);
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .logo-container {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border-radius: 1.25rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        .form-floating {
+            margin-bottom: 1rem;
+        }
+
+            .form-floating .form-control {
+                border-radius: 0.75rem;
+                border: 1px solid #e5e7eb;
+                height: 3.5rem;
+                padding-left: 3rem;
+            }
+
+                .form-floating .form-control:focus {
+                    border-color: #3b82f6;
+                    box-shadow: 0 0 0 0.2rem rgba(59, 130, 246, 0.25);
+                }
+
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9ca3af;
+            z-index: 5;
+        }
+
+        .btn-login {
+            background: linear-gradient(135deg, #3b82f6, #1d4ed8);
+            border: none;
+            border-radius: 0.75rem;
+            height: 3.5rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+        }
+
+            .btn-login:hover {
+                background: linear-gradient(135deg, #1d4ed8, #1e40af);
+                transform: translateY(-1px);
+                box-shadow: 0 10px 25px rgba(59, 130, 246, 0.4);
+            }
+
+        .demo-credentials {
+            background: #f0f9ff;
+            border: 1px solid #bae6fd;
+            border-radius: 0.75rem;
+            padding: 1rem;
+        }
+
+        .spinner-border-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body class="d-flex align-items-center">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
+                <div class="login-card p-4 p-sm-5">
+                    <div class="login-header">
+                        <div class="logo-container">
+                            <span class="text-white fw-bold fs-2">QC</span>
+                        </div>
+                        <h1 class="h3 fw-bold text-gray-900 mb-2">QC CHAP-WAI</h1>
+                        <p class="text-muted">Quality Control Management</p>
+                    </div>
+
+                    @if (!ViewData.ModelState.IsValid)
+                    {
+                        <div class="alert alert-danger d-flex align-items-center" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <div>
+                                @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+                                {
+                                    <div>@error.ErrorMessage</div>
+                                }
+                            </div>
+                        </div>
+                    }
+
+                    <!-- Demo Credentials -->
+                    <div class="demo-credentials mb-4">
+                        <p class="small fw-semibold text-primary mb-2">ล็อกอินเข้าใช้งานด้วยรหัสพนักงานของท่าน เช่น:</p>
+                        <div class="small text-primary">
+                            <div><strong>ชื่อผู้ใช้:</strong> 092XXX</div>
+                            <div><strong>รหัสผ่าน:</strong> 092XXX</div>
+                        </div>
+                    </div>
+
+                    <form method="post" asp-controller="Account" asp-action="Login">
+                        <input name="returnUrl" type="hidden" value="@ViewData["ReturnUrl"]" />
+
+                        <div class="form-floating position-relative">
+                            <i class="bi bi-person input-icon"></i>
+                            <input class="form-control" type="text" name="username" placeholder="ชื่อผู้ใช้" required autofocus>
+                            <label>ชื่อผู้ใช้</label>
+                        </div>
+
+                        <div class="form-floating position-relative mb-3">
+                            <i class="bi bi-lock input-icon"></i>
+                            <input class="form-control" type="password" name="password" placeholder="รหัสผ่าน" required>
+                            <label>รหัสผ่าน</label>
+                        </div>
+
+                        <div class="d-grid">
+                            <button class="btn btn-primary btn-login" type="submit" id="loginBtn">
+                                <span class="login-text">เข้าสู่ระบบ</span>
+                                <span class="loading-text d-none">
+                                    <span class="spinner-border spinner-border-sm me-2" role="status"></span>
+                                    กำลังเข้าสู่ระบบ...
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="text-center mt-4">
+                        <small class="text-muted">
+                            © 2026 QC CHAP-WAI. All rights reserved.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // Login form animation
+        document.querySelector('form').addEventListener('submit', function() {
+            const btn = document.getElementById('loginBtn');
+            const loginText = btn.querySelector('.login-text');
+            const loadingText = btn.querySelector('.loading-text');
+
+            btn.disabled = true;
+            loginText.classList.add('d-none');
+            loadingText.classList.remove('d-none');
+        });
+
+        // Demo credential quick fill
+        document.addEventListener('DOMContentLoaded', function() {
+            const demoCredentials = document.querySelectorAll('.demo-credentials div');
+            demoCredentials.forEach(function(div) {
+                div.style.cursor = 'pointer';
+                div.addEventListener('click', function() {
+                    const text = this.textContent;
+                    if (text.includes('admin')) {
+                        document.querySelector('input[name="username"]').value = 'admin';
+                        document.querySelector('input[name="password"]').value = 'admin123';
+                    } else if (text.includes('user')) {
+                        document.querySelector('input[name="username"]').value = 'user';
+                        document.querySelector('input[name="password"]').value = 'user123';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

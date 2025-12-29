@@ -1,0 +1,580 @@
+﻿@model QcChapWai.Models.MaterialMasterViewModel
+@{
+    ViewData["Title"] = "เพิ่ม Material Master";
+    var materials = ViewBag.Materials as List<QcChapWai.Models.MaterialMasterViewModel> ?? new List<QcChapWai.Models.MaterialMasterViewModel>();
+}
+
+<!-- ✅ เพิ่ม Anti-Forgery Token -->
+<form asp-antiforgery="true" style="display:none;">
+    @Html.AntiForgeryToken()
+</form>
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h1 class="fw-bold text-dark mb-1">
+            <i class="bi bi-plus-circle text-primary me-2"></i>
+            เพิ่ม Material Master
+        </h1>
+        <p class="text-muted mb-0">เพิ่มข้อมูล Material จาก ZMATMASDW</p>
+    </div>
+
+    <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+        <i class="bi bi-arrow-left me-1"></i>
+        กลับไปรายการ
+    </a>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">
+                    <i class="bi bi-box-seam me-2"></i>
+                    ข้อมูลสินค้า
+                </h5>
+            </div>
+            <div class="card-body">
+                <div class="row g-3">
+                    <!-- Material Code Selection -->
+                    <div class="col-12">
+                        <label class="form-label fw-bold">
+                            Material Code <span class="text-danger">*</span>
+                        </label>
+
+                        <!-- Search Input -->
+                        <input type="text"
+                               class="form-control mb-2"
+                               id="materialSearch"
+                               placeholder="🔍 ค้นหา Material Code หรือชื่อสินค้า...">
+
+                        <!-- Dropdown -->
+                        <select class="form-select"
+                                id="materialSelect"
+                                size="8"
+                                style="height: 200px;"
+                                required>
+                            <option value="">เลือก Material Code</option>
+                            @foreach (var material in materials)
+                            {
+                                <option value="@material.MaterialNumber"
+                                        data-name="@material.MaterialDescription"
+                                        data-size="@material.Size"
+                                        data-unit="@material.Unit"
+                                        data-film="@material.TypeOfFilm"
+                                        data-search="@material.SearchText.ToLower()">
+                                    @material.MaterialNumber - @material.MaterialDescription
+                                </option>
+                            }
+                        </select>
+                    </div>
+
+                    <!-- Auto-populated Fields -->
+                    <div class="col-md-6">
+                        <label class="form-label fw-bold">ชื่อสินค้า</label>
+                        <input type="text" class="form-control" id="productName" readonly>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">ขนาด</label>
+                        <input type="text" class="form-control" id="size" readonly>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">หน่วย</label>
+                        <input type="text" class="form-control" id="unit" readonly>
+                    </div>
+
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">Plant</label>
+                        <input type="text" class="form-control" id="plant" value="KB01" readonly>
+                    </div>
+
+                    
+                    <div class="col-md-3">
+                        <label class="form-label fw-bold">ประเภทฟิล์ม</label>
+                        <input type="text" class="form-control" id="filmType" readonly>
+                    </div>
+                </div>
+
+                <!-- ✅ Action Buttons -->
+                <div class="d-flex gap-2 mt-4">
+                    <button type="button" class="btn btn-success" onclick="saveMaterialMaster()">
+                        <i class="bi bi-save me-1"></i>
+                        บันทึกสินค้า
+                    </button>
+                    <button type="button" class="btn btn-info d-none" data-bs-toggle="modal" data-bs-target="#addParameterModal">
+                        <i class="bi bi-plus-square me-1"></i>
+                        เพิ่มพารามิเตอร์
+                    </button>
+                    <a href="@Url.Action("Index")" class="btn btn-outline-secondary">
+                        <i class="bi bi-x-circle me-1"></i>
+                        ยกเลิก
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Help Card -->
+    <div class="col-lg-4">
+        <div class="card">
+            <div class="card-header bg-light">
+                <h6 class="card-title mb-0">
+                    <i class="bi bi-info-circle me-2"></i>
+                    คำแนะนำ
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="small">
+                    <h6 class="fw-semibold">ขั้นตอนการทำงาน:</h6>
+                    <ol class="ps-3">
+                        <li class="mb-2">เลือก <strong>Material Code</strong> จาก dropdown</li>
+                        <li class="mb-2">ระบบจะ auto-fill ข้อมูลสินค้า</li>
+                        <li class="mb-2">กรอก <strong>Customer</strong> (ถ้ามี)</li>
+                        <li class="mb-2">กด <strong>"บันทึกสินค้า"</strong></li>
+                    </ol>
+
+                    <div class="alert alert-warning small" role="alert">
+                        <i class="bi bi-exclamation-triangle me-1"></i>
+                        ถ้า Material Code ซ้ำ ระบบจะแจ้งเตือน
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Card -->
+        <div class="card mt-3" id="previewCard" style="display: none;">
+            <div class="card-header bg-light">
+                <h6 class="card-title mb-0">
+                    <i class="bi bi-eye me-2"></i>
+                    ตัวอย่างข้อมูล
+                </h6>
+            </div>
+            <div class="card-body">
+                <div class="small">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Material:</span>
+                        <span id="preview-code" class="fw-medium">-</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>ชื่อสินค้า:</span>
+                        <span id="preview-name" class="fw-medium">-</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>ขนาด:</span>
+                        <span id="preview-size" class="fw-medium">-</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>ฟิล์ม:</span>
+                        <span id="preview-film" class="fw-medium">-</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ✅ Modal: เพิ่มพารามิเตอร์ (เหมือนเดิม) -->
+<div class="modal fade" id="addParameterModal" tabindex="-1" aria-labelledby="addParameterModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="addParameterModalLabel">
+                    <i class="bi bi-plus-square me-2"></i>
+                    เพิ่มพารามิเตอร์การตรวจสอบ
+                </h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addParameterForm">
+                    <!-- ประเภทการตรวจสอบ -->
+                    <div class="mb-4">
+                        <label class="form-label fw-bold">
+                            <i class="bi bi-collection me-1"></i>
+                            ประเภทการตรวจสอบ <span class="text-danger">*</span>
+                        </label>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <div class="card modal-parameter-type h-100" style="cursor: pointer; transition: all 0.2s;">
+                                    <div class="card-body text-center">
+                                        <input type="radio" name="parameterType" value="number" id="typeNumber" class="d-none" checked>
+                                        <label for="typeNumber" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
+                                            <i class="bi bi-123 fs-2 text-primary mb-2"></i>
+                                            <strong>ค่าตัวเลข</strong>
+                                            <small class="text-muted">มี Min, Max, Std</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card modal-parameter-type h-100" style="cursor: pointer; transition: all 0.2s;">
+                                    <div class="card-body text-center">
+                                        <input type="radio" name="parameterType" value="leftright" id="typeLeftRight" class="d-none">
+                                        <label for="typeLeftRight" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
+                                            <i class="bi bi-arrow-left-right fs-2 text-info mb-2"></i>
+                                            <strong>ซ้าย/ขวา</strong>
+                                            <small class="text-muted">ไม่ต้องกรอก Min/Max</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card modal-parameter-type h-100" style="cursor: pointer; transition: all 0.2s;">
+                                    <div class="card-body text-center">
+                                        <input type="radio" name="parameterType" value="passfail" id="typePassFail" class="d-none">
+                                        <label for="typePassFail" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
+                                            <i class="bi bi-check-circle fs-2 text-success mb-2"></i>
+                                            <strong>ปกติ/ไม่ปกติ</strong>
+                                            <small class="text-muted">ไม่ต้องกรอก Min/Max</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- รายละเอียดพารามิเตอร์ -->
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label for="modalDocInspection" class="form-label">
+                                ชื่อการตรวจสอบ <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="modalDocInspection"
+                                   placeholder="เช่น ความกว้าง, ความยาว, ความหนา" required>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="modalDocUnit" class="form-label">
+                                หน่วย <span class="text-danger">*</span>
+                            </label>
+                            <select class="form-select" id="modalDocUnit" required>
+                                <option value="cm">cm</option>
+                                <option value="mm">mm</option>
+                                <option value="mic">mic</option>
+                                <option value="g">g</option>
+                                <option value="kg">kg</option>
+                                <option value="%">%</option>
+                                <option value="N/mm²">N/mm²</option>
+                                <option value="-">-</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- ค่าตัวเลข -->
+                    <div class="number-inputs-section active mt-3" id="numberInputsSection" style="display: block;">
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-1"></i>
+                            กรอกค่า Min, Max, Standard สำหรับการตรวจแบบตัวเลข
+                        </div>
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="modalDocMin" class="form-label">ค่าต่ำสุด (Min)</label>
+                                <input type="number" step="0.01" class="form-control" id="modalDocMin" placeholder="0.00">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="modalDocStd" class="form-label">ค่ามาตรฐาน (Std)</label>
+                                <input type="number" step="0.01" class="form-control" id="modalDocStd" placeholder="0.00">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="modalDocMax" class="form-label">ค่าสูงสุด (Max)</label>
+                                <input type="number" step="0.01" class="form-control" id="modalDocMax" placeholder="0.00">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- หมายเหตุ -->
+                    <div class="mt-3">
+                        <label for="modalDocRemark" class="form-label">หมายเหตุ</label>
+                        <textarea class="form-control" id="modalDocRemark" rows="2"
+                                  placeholder="หมายเหตุเพิ่มเติม (ถ้ามี)"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle me-1"></i>
+                    ยกเลิก
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitAddParameter()">
+                    <i class="bi bi-save me-1"></i>
+                    บันทึก
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast Container -->
+<div class="toast-container position-fixed bottom-0 end-0 p-3" id="toastContainer"></div>
+
+@section Scripts {
+    <style>
+        .modal-parameter-type:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        }
+
+        .modal-parameter-type input[type="radio"]:checked + label {
+            background-color: #0d6efd;
+            color: white;
+            border-color: #0d6efd;
+        }
+    </style>
+
+    <script>
+        // ✅ Helper: Get Anti-Forgery Token
+        function getAntiForgeryToken() {
+            return document.querySelector('input[name="__RequestVerificationToken"]')?.value || '';
+        }
+
+        // ✅ Search Filter
+        document.getElementById('materialSearch').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            const options = document.querySelectorAll('#materialSelect option');
+
+            options.forEach(option => {
+                if (option.value === '') return;
+                const searchData = option.dataset.search || '';
+                option.style.display = searchData.includes(searchTerm) ? '' : 'none';
+            });
+        });
+
+        // ✅ Material Selection
+        document.getElementById('materialSelect').addEventListener('change', function() {
+            const selectedOption = this.options[this.selectedIndex];
+
+            if (selectedOption.value) {
+                document.getElementById('productName').value = selectedOption.dataset.name || '';
+                document.getElementById('size').value = selectedOption.dataset.size || '';
+                document.getElementById('unit').value = selectedOption.dataset.unit || '';
+                document.getElementById('filmType').value = selectedOption.dataset.film || '';
+
+                // Update preview
+                document.getElementById('preview-code').textContent = selectedOption.value;
+                document.getElementById('preview-name').textContent = selectedOption.dataset.name || '-';
+                document.getElementById('preview-size').textContent = selectedOption.dataset.size || '-';
+                document.getElementById('preview-film').textContent = selectedOption.dataset.film || '-';
+                document.getElementById('previewCard').style.display = 'block';
+            } else {
+                clearForm();
+            }
+        });
+
+        function clearForm() {
+            document.getElementById('productName').value = '';
+            document.getElementById('size').value = '';
+            document.getElementById('unit').value = '';
+            document.getElementById('filmType').value = '';
+            document.getElementById('previewCard').style.display = 'none';
+        }
+
+        // ✅ Save Material Master (FIX: Add Token + Error Handling)
+        function saveMaterialMaster() {
+            const materialCode = document.getElementById('materialSelect').value;
+
+            if (!materialCode) {
+                showToast('กรุณาเลือก Material Code', 'warning');
+                return;
+            }
+
+            const btn = event.target;
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>กำลังบันทึก...';
+            btn.disabled = true;
+
+            fetch('@Url.Action("SaveMaterialMaster", "Material")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': getAntiForgeryToken() // ✅ เพิ่ม Token
+                },
+                body: JSON.stringify({ materialCode: materialCode })
+            })
+            .then(response => {
+                // ✅ เช็คว่าเป็น JSON หรือไม่
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Server returned HTML instead of JSON. Check your route and controller.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('✅ ' + data.message, 'success');
+                    setTimeout(() => {
+                        window.location.href = '@Url.Action("Index", "Material")';
+                    }, 1500);
+                } else {
+                    showToast('⚠️ ' + data.message, 'warning');
+                    btn.innerHTML = originalText;
+                    btn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('เกิดข้อผิดพลาด: ' + error.message, 'error');
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            });
+        }
+
+        // ✅ Radio Button Change
+        document.querySelectorAll('input[name="parameterType"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                const numberSection = document.getElementById('numberInputsSection');
+                if (this.value === 'number') {
+                    numberSection.style.display = 'block';
+                    document.getElementById('modalDocMin').required = true;
+                    document.getElementById('modalDocStd').required = true;
+                    document.getElementById('modalDocMax').required = true;
+                } else {
+                    numberSection.style.display = 'none';
+                    document.getElementById('modalDocMin').value = '';
+                    document.getElementById('modalDocStd').value = '';
+                    document.getElementById('modalDocMax').value = '';
+                    document.getElementById('modalDocMin').required = false;
+                    document.getElementById('modalDocStd').required = false;
+                    document.getElementById('modalDocMax').required = false;
+                }
+            });
+        });
+
+        // ✅ Submit Add Parameter (FIX: Add Token + Error Handling)
+        function submitAddParameter() {
+            const parameterType = document.querySelector('input[name="parameterType"]:checked').value;
+            const docInspection = document.getElementById('modalDocInspection').value.trim();
+            const docUnit = document.getElementById('modalDocUnit').value;
+            const materialCode = document.getElementById('materialSelect').value;
+            const productName = document.getElementById('productName').value;
+            const customer = document.getElementById('customer').value;
+
+            if (!materialCode) {
+                showToast('กรุณาเลือก Material Code ก่อน', 'warning');
+                return;
+            }
+
+            if (!docInspection) {
+                showToast('กรุณากรอกชื่อการตรวจสอบ', 'warning');
+                return;
+            }
+
+            let docMin = null, docMax = null, docStd = null;
+
+            if (parameterType === 'number') {
+                docMin = parseFloat(document.getElementById('modalDocMin').value);
+                docMax = parseFloat(document.getElementById('modalDocMax').value);
+                docStd = parseFloat(document.getElementById('modalDocStd').value);
+
+                if (isNaN(docMin) || isNaN(docMax) || isNaN(docStd)) {
+                    showToast('กรุณากรอกค่า Min, Max, Std ให้ครบถ้วน', 'warning');
+                    return;
+                }
+
+                if (docMin >= docMax) {
+                    showToast('ค่า Min ต้องน้อยกว่า Max', 'warning');
+                    return;
+                }
+
+                if (docStd < docMin || docStd > docMax) {
+                    showToast('ค่า Standard ต้องอยู่ระหว่าง Min และ Max', 'warning');
+                    return;
+                }
+            }
+
+            const requestData = {
+                docFg: materialCode,
+                docFgItem: productName,
+                docCustomer: customer || 'N/A',
+                docPlant: document.getElementById('plant').value,
+                docProcess: document.getElementById('process').value,
+                docSize: document.getElementById('size').value,
+                docTypeOfFilm: document.getElementById('filmType').value,
+                docSo: document.getElementById('soNumber').value,
+                parameterType: parameterType,
+                docInspection: docInspection,
+                docUnit: docUnit,
+                docMin: docMin,
+                docMax: docMax,
+                docStd: docStd,
+                docRemark: document.getElementById('modalDocRemark').value
+            };
+
+            const submitBtn = document.querySelector('#addParameterModal .btn-primary');
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>กำลังบันทึก...';
+            submitBtn.disabled = true;
+
+            fetch('@Url.Action("AddInspectionParameter", "Material")', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'RequestVerificationToken': getAntiForgeryToken() // ✅ เพิ่ม Token
+                },
+                body: JSON.stringify(requestData)
+            })
+            .then(response => {
+                // ✅ เช็คว่าเป็น JSON หรือไม่
+                const contentType = response.headers.get('content-type');
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Server returned HTML instead of JSON. Check your route and controller.');
+                }
+                return response.json();
+            })
+            .then(data => {
+                if (data.success) {
+                    showToast('✅ ' + data.message, 'success');
+
+                    const modal = bootstrap.Modal.getInstance(document.getElementById('addParameterModal'));
+                    modal.hide();
+
+                    // Clear form
+                    document.getElementById('addParameterForm').reset();
+                    document.querySelector('input[name="parameterType"][value="number"]').checked = true;
+                    document.getElementById('numberInputsSection').style.display = 'block';
+
+                    // Reload page
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    showToast('❌ ' + data.message, 'error');
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showToast('เกิดข้อผิดพลาด: ' + error.message, 'error');
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            });
+        }
+
+        // ✅ Toast Function
+        function showToast(message, type = 'info') {
+            const toastContainer = document.getElementById('toastContainer');
+            const toastId = 'toast-' + Date.now();
+            const bgClass = type === 'success' ? 'bg-success' :
+                           type === 'error' ? 'bg-danger' :
+                           type === 'warning' ? 'bg-warning' : 'bg-primary';
+
+            const toast = document.createElement('div');
+            toast.id = toastId;
+            toast.className = `toast align-items-center text-white ${bgClass} border-0`;
+            toast.setAttribute('role', 'alert');
+            toast.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">${message}</div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+                </div>
+            `;
+
+            toastContainer.appendChild(toast);
+            const bsToast = new bootstrap.Toast(toast);
+            bsToast.show();
+
+            toast.addEventListener('hidden.bs.toast', () => {
+                toast.remove();
+            });
+        }
+    </script>
+}
