@@ -219,6 +219,55 @@ namespace QcChapWai.Controllers
             }
         }
 
+        // เพิ่ม method นี้ใน MaterialController.cs
+
+        [HttpGet]
+        public async Task<IActionResult> GetMaterialData(int id)
+        {
+            try
+            {
+                var material = await _materialService.GetMaterialByIdAsync(id);
+
+                if (material == null)
+                {
+                    return Json(new { success = false, message = "ไม่พบข้อมูล" });
+                }
+
+                return Json(new
+                {
+                    success = true,
+                    docId = material.DocId,
+                    docFg = material.DocFg,
+                    docFgItem = material.DocFgItem,
+                    docCustomer = material.DocCustomer,
+                    docSize = material.DocSize,
+                    docTypeOfFilm = material.DocTypeOfFilm,
+                    docSo = material.DocSo,
+                    docSoItem = material.DocSoItem,
+                    docInspection = material.DocInspection,
+                    docPlant = material.DocPlant,
+                    docProcess = material.DocProcess,
+                    docUnit = material.DocUnit,
+                    docMin = material.DocMin,
+                    docStd = material.DocStd,
+                    docMax = material.DocMax,
+                    docMachineNo = material.DocMachineNo,
+                    docLotno = material.DocLotno,
+                    docRemark = material.DocRemark,
+                    docCreateDate = material.DocCreateDate?.ToString("yyyy-MM-ddTHH:mm:ss"),
+                    docOrderSort = material.DocOrderSort,
+                    docIsLr = material.DocIsLr,
+                    docIsMm = material.DocIsMm,
+                    docPassed = material.DocPassed,
+                    docHide = material.DocHide
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = ex.Message });
+            }
+        }
+
         // ========================================
         // EDIT
         // ========================================
@@ -233,37 +282,34 @@ namespace QcChapWai.Controllers
             return View(material);
         }
 
+        /// <summary>
+        /// ✅ แก้ไข Edit Method ให้รองรับ JSON Request
+        /// </summary>
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, DocumentInspection model)
+        public async Task<IActionResult> Edit([FromBody] DocumentInspection model)
         {
-            if (id != model.DocId)
+            try
             {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
-                try
+                if (model.DocId <= 0)
                 {
-                    var success = await _materialService.UpdateMaterialAsync(model);
-                    if (success)
-                    {
-                        TempData["SuccessMessage"] = "อัปเดตข้อมูลสำเร็จ";
-                        return RedirectToAction(nameof(Index));
-                    }
-                    else
-                    {
-                        ModelState.AddModelError(string.Empty, "ไม่พบข้อมูลที่ต้องการอัปเดต");
-                    }
+                    return Json(new { success = false, message = "ไม่พบ ID ที่ต้องการแก้ไข" });
                 }
-                catch (Exception ex)
+
+                var success = await _materialService.UpdateMaterialAsync(model);
+
+                if (success)
                 {
-                    ModelState.AddModelError(string.Empty, $"เกิดข้อผิดพลาด: {ex.Message}");
+                    return Json(new { success = true, message = "อัปเดตข้อมูลสำเร็จ" });
+                }
+                else
+                {
+                    return Json(new { success = false, message = "ไม่พบข้อมูลที่ต้องการอัปเดต" });
                 }
             }
-
-            return View(model);
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"เกิดข้อผิดพลาด: {ex.Message}" });
+            }
         }
 
         // ========================================
@@ -321,6 +367,53 @@ namespace QcChapWai.Controllers
             catch (Exception ex)
             {
                 return Json(new { success = false, message = ex.Message });
+            }
+        }
+
+
+
+        /// <summary>
+        /// ✅ API: ดึงข้อมูลพารามิเตอร์ตาม ID (สำหรับ Edit Modal)
+        /// </summary>
+        [HttpGet]
+        public async Task<IActionResult> GetMaterialById(int id)
+        {
+            try
+            {
+                var material = await _materialService.GetMaterialByIdAsync(id);
+
+                if (material == null)
+                {
+                    return Json(new { success = false, message = "ไม่พบข้อมูล" });
+                }
+
+                return Json(new
+                {
+                    success = true,
+                    docId = material.DocId,
+                    docFg = material.DocFg,
+                    docFgItem = material.DocFgItem,
+                    docCustomer = material.DocCustomer,
+                    docPlant = material.DocPlant,
+                    docProcess = material.DocProcess,
+                    docSize = material.DocSize,
+                    docTypeOfFilm = material.DocTypeOfFilm,
+                    docSo = material.DocSo,
+                    docSoItem = material.DocSoItem,
+                    docInspection = material.DocInspection,
+                    docUnit = material.DocUnit,
+                    docMin = material.DocMin,
+                    docMax = material.DocMax,
+                    docStd = material.DocStd,
+                    docIsLr = material.DocIsLr,
+                    docIsMm = material.DocIsMm,
+                    docRemark = material.DocRemark,
+                    docDataType = material.DocDataType
+                });
+            }
+            catch (Exception ex)
+            {
+                return Json(new { success = false, message = $"เกิดข้อผิดพลาด: {ex.Message}" });
             }
         }
     }

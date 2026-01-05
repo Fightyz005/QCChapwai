@@ -106,6 +106,8 @@ namespace QcChapWai.Models
         public int PassedCount { get; set; }
         public int TotalCount { get; set; }
         public bool OverallPassed => TotalCount > 0 && PassedCount == TotalCount;
+        public DocumentInspection Product { get; set; } = null!;
+        public List<DocumentInspection> Inspections { get; set; } = new();
     }
 
     public class ProductionOrderViewModel

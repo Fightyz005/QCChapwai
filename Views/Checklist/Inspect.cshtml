@@ -90,25 +90,57 @@
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
 
+
+
     .modal-parameter-type {
         cursor: pointer;
         transition: all 0.2s;
+        border: 2px solid #e9ecef;
     }
 
     .modal-parameter-type:hover {
         transform: translateY(-2px);
         box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        border-color: #0d6efd;
     }
 
-    .modal-parameter-type input[type="radio"]:checked + label {
-    
-        border: 1px dashed #0d6efd;
+    .modal-parameter-type input[type="radio"]:checked + label {  
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        color: white !important;
+        border-radius: 0.375rem;
+    }
+
+    /* ✅ Fixed: Style when radio is checked */
+        .modal-parameter-type input[type="radio"]:checked ~ .card-body,
+        .modal-parameter-type input[type="radio"]:checked ~ .card-body label {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            color: white !important;
+            border-radius: 0.375rem;
+        }
+
+    .data-type-card {
+        cursor: pointer;
+        border: 2px solid #e9ecef;
+        transition: all 0.2s;
+    }
+
+    .data-type-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        border-color: #0d6efd;
     }
 
     .data-type-card input[type="radio"]:checked + label {
-    
-        border: 1px dashed #0d6efd;
+        background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+        color: white !important;
+        border-radius: 0.375rem;
     }
+
+    .data-type-card input[type="radio"]:checked ~ .card-body,
+        .data-type-card input[type="radio"]:checked ~ .card-body label {
+            background: linear-gradient(135deg, #0d6efd 0%, #0b5ed7 100%);
+            color: white !important;
+        }
 
     .number-inputs-section {
         display: none;
@@ -391,38 +423,64 @@
                             ประเภทข้อมูล <span class="text-danger">*</span>
                         </label>
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
                                     <div class="card-body text-center p-3">
-                                        <input type="radio" name="dataType" value="ตัด" id="dataTypeCut" class="d-none" checked>
-                                        <label for="dataTypeCut" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
-                                            <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
-                                            <strong>ตัด</strong>
-                                            <small class="text-muted">CUT</small>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
-                                    <div class="card-body text-center p-3">
-                                        <input type="radio" name="dataType" value="เป่า" id="dataTypeBlow" class="d-none">
+                                        <input type="radio" name="dataType" value="เป่า, เป่า-พิมพ์" id="dataTypeBlow" class="d-none">
                                         <label for="dataTypeBlow" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
-                                            <i class="bi bi-wind fs-2 text-info mb-2"></i>
-                                            <strong>เป่า</strong>
-                                            <small class="text-muted">BLOW</small>
+                                            <div class="d-inline">
+                                                <i class="bi bi-wind fs-2 text-info mb-2"></i>
+                                                <i class="bi bi-printer fs-2 text-warning mb-2"></i>
+                                            </div>
+                                            <strong>เป่า, เป่า-พิมพ์</strong>
+                                            <small class="text-muted">BLOW, BLOW-PRINT</small>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            
+                            <div class="col-md-2">
                                 <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
                                     <div class="card-body text-center p-3">
                                         <input type="radio" name="dataType" value="พิมพ์" id="dataTypePrint" class="d-none">
                                         <label for="dataTypePrint" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
                                             <i class="bi bi-printer fs-2 text-warning mb-2"></i>
                                             <strong>พิมพ์</strong>
-                                            <small class="text-muted">PRINT</small>
+                                            <small class="text-muted">OUTLINE</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
+                                    <div class="card-body text-center p-3">
+                                        <input type="radio" name="dataType" value="ตัด-บรรจุ" id="dataTypeCut" class="d-none" checked>
+                                        <label for="dataTypeCut" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
+                                            <div class="d-inline">
+                                                <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
+                                                <i class="bi bi-box-seam fs-2 text-success mb-2"></i>
+                                            </div>
+                                            <strong>ตัด-บรรจุ</strong>
+                                            <small class="text-muted">CUT-PACK</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
+                                    <div class="card-body text-center p-3">
+                                        <input type="radio" name="dataType" value="เป่า-พิมพ์-ตัด-บรรจุ" id="dataTypeBlowPrintCutPack" class="d-none">
+                                        <label for="dataTypeBlowPrintCutPack" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
+                                            <div class="d-inline">
+                                                <i class="bi bi-wind fs-2 text-info mb-2"></i>
+                                                <i class="bi bi-printer fs-2 text-warning mb-2"></i>
+                                                <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
+                                                <i class="bi bi-box-seam fs-2 text-success mb-2"></i>
+                                            </div>     
+                                            <strong>เป่า-พิมพ์-ตัด-บรรจุ</strong>
+                                            <small class="text-muted">BLOW-PRINT-CUT-PACK</small>
                                         </label>
                                     </div>
                                 </div>
@@ -441,7 +499,7 @@
                                     <div class="card-body text-center">
                                         <input type="radio" name="parameterType" value="number" id="typeNumber" class="d-none" checked>
                                         <label for="typeNumber" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
-                                            <i class="bi bi-123 fs-2 text-primary mb-2"></i>
+                                            <i class="bi bi-123 fs-2 text-dark mb-2"></i>
                                             <strong>ค่าตัวเลข</strong>
                                             <small class="text-muted">มี Min, Max, Std</small>
                                         </label>
@@ -453,7 +511,7 @@
                                     <div class="card-body text-center">
                                         <input type="radio" name="parameterType" value="leftright" id="typeLeftRight" class="d-none">
                                         <label for="typeLeftRight" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
-                                            <i class="bi bi-arrow-left-right fs-2 text-info mb-2"></i>
+                                            <i class="bi bi-arrow-left-right fs-2 text-dark mb-2"></i>
                                             <strong>ซ้าย/ขวา</strong>
                                             <small class="text-muted">ไม่ต้องกรอก Min/Max</small>
                                         </label>
@@ -1188,9 +1246,7 @@
                 checklistId: checklistId,
                 inspectionRows: inspectionRows,
                 measurements: measurements,
-                remark: document.getElementById('inspectionRemark').value,
-                inspector: document.getElementById('inspector').value,
-                approver: document.getElementById('approver').value
+                remark: document.getElementById('inspectionRemark').value
             };
         }
 

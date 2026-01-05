@@ -223,7 +223,6 @@ namespace QcChapWai.Controllers
         {
             var inspectorsTeamA = await _userService.GetInspectorsTeamAAsync();
             var inspectorsTeamB = await _userService.GetInspectorsTeamBAsync();
-            var approvers = await _userService.GetApproversAsync();
 
             // สร้าง SelectList สำหรับ Dropdown
             ViewBag.InspectorsTeamA = new SelectList(
@@ -234,12 +233,6 @@ namespace QcChapWai.Controllers
 
             ViewBag.InspectorsTeamB = new SelectList(
                 inspectorsTeamB,
-                "Id",
-                "UserFullName"
-            );
-
-            ViewBag.Approvers = new SelectList(
-                approvers,
                 "Id",
                 "UserFullName"
             );
@@ -269,7 +262,6 @@ namespace QcChapWai.Controllers
                     // ✅ แก้ไข: Convert string ID เป็น int ก่อน get User
                     int inspectorTeamAId = 0;
                     int inspectorTeamBId = 0;
-                    int approverId = 0;
 
                     // Parse IDs
                     if (!int.TryParse(model.InspectorTeamAId.ToString(), out inspectorTeamAId))
@@ -360,11 +352,9 @@ namespace QcChapWai.Controllers
         {
             var inspectorsTeamA = await _userService.GetInspectorsTeamAAsync();
             var inspectorsTeamB = await _userService.GetInspectorsTeamBAsync();
-            var approvers = await _userService.GetApproversAsync();
 
             ViewBag.InspectorsTeamA = new SelectList(inspectorsTeamA, "Id", "UserFullName");
             ViewBag.InspectorsTeamB = new SelectList(inspectorsTeamB, "Id", "UserFullName");
-            ViewBag.Approvers = new SelectList(approvers, "Id", "UserFullName");
         }
 
         public async Task<IActionResult> Inspect(int id)

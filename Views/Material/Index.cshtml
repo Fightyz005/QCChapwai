@@ -255,9 +255,9 @@
                                                             </button>
                                                             <ul class="dropdown-menu">
                                                                 <li>
-                                                                    <a class="dropdown-item" href="@Url.Action("Edit", new { id = param.DocId })">
+                                                                    <button class="dropdown-item" onclick="editParameter(@param.DocId)">
                                                                         <i class="bi bi-pencil me-2"></i>แก้ไข
-                                                                    </a>
+                                                                    </button>
                                                                 </li>
                                                                 <li>
                                                                     <a class="dropdown-item" href="@Url.Action("Details", new { id = param.DocId })">
@@ -429,12 +429,13 @@ else
             <div class="modal-header bg-primary text-white">
                 <h5 class="modal-title" id="addParameterModalLabel">
                     <i class="bi bi-plus-square me-2"></i>
-                    เพิ่มพารามิเตอร์การตรวจสอบใหม่
+                    <span id="modalTitle">เพิ่มพารามิเตอร์การตรวจสอบใหม่</span>
                 </h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <form id="addParameterForm">
+                    <input type="hidden" id="parameterDocId" value="">
                     <!-- ✅ 1. ประเภทข้อมูล (ตัด/เป่า/พิมพ์) - NEW! -->
                     <div class="mb-4">
                         <label class="form-label fw-bold">
@@ -442,38 +443,64 @@ else
                             ประเภทข้อมูล <span class="text-danger">*</span>
                         </label>
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-md-3">
                                 <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
                                     <div class="card-body text-center p-3">
-                                        <input type="radio" name="dataType" value="ตัด" id="dataTypeCut" class="d-none" checked>
-                                        <label for="dataTypeCut" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
-                                            <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
-                                            <strong>ตัด</strong>
-                                            <small class="text-muted">CUT</small>
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
-                                    <div class="card-body text-center p-3">
-                                        <input type="radio" name="dataType" value="เป่า" id="dataTypeBlow" class="d-none">
+                                        <input type="radio" name="dataType" value="เป่า, เป่า-พิมพ์" id="dataTypeBlow" class="d-none">
                                         <label for="dataTypeBlow" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
-                                            <i class="bi bi-wind fs-2 text-info mb-2"></i>
-                                            <strong>เป่า</strong>
-                                            <small class="text-muted">BLOW</small>
+                                            <div class="d-inline">
+                                                <i class="bi bi-wind fs-2 text-info mb-2"></i>
+                                                <i class="bi bi-printer fs-2 text-warning mb-2"></i>
+                                            </div>
+                                            <strong>เป่า, เป่า-พิมพ์</strong>
+                                            <small class="text-muted">BLOW, BLOW-PRINT</small>
                                         </label>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-4">
+                            
+                            <div class="col-md-2">
                                 <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
                                     <div class="card-body text-center p-3">
                                         <input type="radio" name="dataType" value="พิมพ์" id="dataTypePrint" class="d-none">
                                         <label for="dataTypePrint" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
                                             <i class="bi bi-printer fs-2 text-warning mb-2"></i>
                                             <strong>พิมพ์</strong>
-                                            <small class="text-muted">PRINT</small>
+                                            <small class="text-muted">OUTLINE</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
+                                    <div class="card-body text-center p-3">
+                                        <input type="radio" name="dataType" value="ตัด-บรรจุ" id="dataTypeCut" class="d-none" checked>
+                                        <label for="dataTypeCut" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
+                                            <div class="d-inline">
+                                                <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
+                                                <i class="bi bi-box-seam fs-2 text-success mb-2"></i>
+                                            </div>
+                                            <strong>ตัด-บรรจุ</strong>
+                                            <small class="text-muted">CUT-PACK</small>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <div class="card data-type-card h-100" style="cursor: pointer; border: 2px solid #e9ecef; transition: all 0.2s;">
+                                    <div class="card-body text-center p-3">
+                                        <input type="radio" name="dataType" value="เป่า-พิมพ์-ตัด-บรรจุ" id="dataTypeBlowPrintCutPack" class="d-none">
+                                        <label for="dataTypeBlowPrintCutPack" class="w-100 h-100 d-flex flex-column justify-content-center mb-0" style="cursor: pointer;">
+                                            <div class="d-inline">
+                                                <i class="bi bi-wind fs-2 text-info mb-2"></i>
+                                                <i class="bi bi-printer fs-2 text-warning mb-2"></i>
+                                                <i class="bi bi-scissors fs-2 text-danger mb-2"></i>
+                                                <i class="bi bi-box-seam fs-2 text-success mb-2"></i>
+                                            </div>     
+                                            <strong>เป่า-พิมพ์-ตัด-บรรจุ</strong>
+                                            <small class="text-muted">BLOW-PRINT-CUT-PACK</small>
                                         </label>
                                     </div>
                                 </div>
@@ -492,7 +519,7 @@ else
                                     <div class="card-body text-center">
                                         <input type="radio" name="parameterType" value="number" id="typeNumber" class="d-none" checked>
                                         <label for="typeNumber" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
-                                            <i class="bi bi-123 fs-2 text-primary mb-2"></i>
+                                            <i class="bi bi-123 fs-2 text-dark mb-2"></i>
                                             <strong>ค่าตัวเลข</strong>
                                             <small class="text-muted">มี Min, Max, Std</small>
                                         </label>
@@ -504,7 +531,7 @@ else
                                     <div class="card-body text-center">
                                         <input type="radio" name="parameterType" value="leftright" id="typeLeftRight" class="d-none">
                                         <label for="typeLeftRight" class="w-100 h-100 d-flex flex-column justify-content-center" style="cursor: pointer;">
-                                            <i class="bi bi-arrow-left-right fs-2 text-info mb-2"></i>
+                                            <i class="bi bi-arrow-left-right fs-2 text-dark mb-2"></i>
                                             <strong>ซ้าย/ขวา</strong>
                                             <small class="text-muted">ไม่ต้องกรอก Min/Max</small>
                                         </label>
@@ -587,7 +614,7 @@ else
                     <i class="bi bi-x-circle me-1"></i>
                     ยกเลิก
                 </button>
-                <button type="button" class="btn btn-primary" onclick="submitAddParameter()">
+                <button type="button" class="btn btn-primary" id="btnSubmitParameter" onclick="submitParameter()">
                     <i class="bi bi-save me-1"></i>
                     บันทึก
                 </button>
@@ -607,6 +634,8 @@ else
         let currentMaterialCode = '';
         let currentProductName = '';
         let currentPlant = '';
+        let isEditMode = false;
+        let currentParameterId = null;
 
         // ============================================
         // DOMContentLoaded - Initialize
@@ -673,20 +702,34 @@ else
             const form = document.getElementById('addParameterForm');
             if (form) form.reset();
 
-            const dataTypeCut = document.getElementById('dataTypeCut');
-            if (dataTypeCut) {
-                dataTypeCut.checked = true;
-                updateDataTypeCardStyles();
-            }
+            // Set defaults
 
-            const typeNumber = document.getElementById('typeNumber');
-            if (typeNumber) {
-                typeNumber.checked = true;
-                updateParameterTypeCardStyles();
-            }
+            document.getElementById('dataTypeCut').checked = true;
+            document.getElementById('typeNumber').checked = true;
+            document.getElementById('numberInputsSection').classList.add('active');
+            document.getElementById('parameterDocId').value = '';
 
-            const numberSection = document.getElementById('numberInputsSection');
-            if (numberSection) numberSection.classList.add('active');
+            // const dataTypeCut = document.getElementById('dataTypeCut');
+            // if (dataTypeCut) {
+            //     dataTypeCut.checked = true;
+            //     updateDataTypeCardStyles();
+            // }
+
+            // const typeNumber = document.getElementById('typeNumber');
+            // if (typeNumber) {
+            //     typeNumber.checked = true;
+            //     updateParameterTypeCardStyles();
+            // }
+
+            // const numberSection = document.getElementById('numberInputsSection');
+            // if (numberSection) numberSection.classList.add('active');
+
+             // Update modal title
+
+            document.getElementById('modalTitle').textContent = 'เพิ่มพารามิเตอร์การตรวจสอบใหม่';
+
+            updateDataTypeCardStyles();
+            updateParameterTypeCardStyles();
 
             const modalElement = document.getElementById('addParameterModal');
             if (modalElement) {
@@ -754,10 +797,85 @@ else
         }
 
         // ============================================
+        // ✅ editParameter - สำหรับแก้ไข
+        // ============================================
+        function editParameter(parameterId) {
+            isEditMode = true;
+            currentParameterId = parameterId;
+
+            // Show loading
+            showToast('กำลังโหลดข้อมูล...', 'info');
+
+            // Fetch parameter data
+            fetch(`@Url.Action("GetMaterialById", "Material")?id=${parameterId}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        // Set global variables
+                        currentMaterialCode = data.docFg;
+                        currentProductName = data.docFgItem;
+                        currentPlant = data.docPlant;
+
+                        // Fill form
+                        document.getElementById('parameterDocId').value = data.docId;
+                        document.getElementById('modalDocInspection').value = data.docInspection;
+                        document.getElementById('modalDocUnit').value = data.docUnit;
+                        document.getElementById('modalDocRemark').value = data.docRemark || '';
+
+                        // Set data type
+                        if (data.docDataType) {
+                            const dataTypeRadio = document.querySelector(`input[name="dataType"][value="${data.docDataType}"]`);
+                            if (dataTypeRadio) {
+                                dataTypeRadio.checked = true;
+                                updateDataTypeCardStyles();
+                            }
+                        }
+
+                        // Set parameter type
+                        let paramType = 'number';
+                        if (data.docIsLr) {
+                            paramType = 'leftright';
+                        } else if (data.docIsMm) {
+                            paramType = 'passfail';
+                        }
+
+                        const paramTypeRadio = document.querySelector(`input[name="parameterType"][value="${paramType}"]`);
+                        if (paramTypeRadio) {
+                            paramTypeRadio.checked = true;
+                            paramTypeRadio.dispatchEvent(new Event('change'));
+                        }
+
+                        // Fill numeric values if applicable
+                        if (paramType === 'number') {
+                            document.getElementById('modalDocMin').value = data.docMin;
+                            document.getElementById('modalDocStd').value = data.docStd;
+                            document.getElementById('modalDocMax').value = data.docMax;
+                        }
+
+                        // Update modal title
+                        document.getElementById('modalTitle').textContent = 'แก้ไขพารามิเตอร์การตรวจสอบ';
+
+                        // Show modal
+                        const modalElement = document.getElementById('addParameterModal');
+                        if (modalElement) {
+                            const modal = new bootstrap.Modal(modalElement);
+                            modal.show();
+                        }
+                    } else {
+                        showToast('❌ ไม่พบข้อมูล', 'error');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    showToast('❌ เกิดข้อผิดพลาดในการโหลดข้อมูล', 'error');
+                });
+        }
+
+        // ============================================
         // submitAddParameter
         // ============================================
-        function submitAddParameter() {
-            if (!currentMaterialCode) {
+        function submitParameter() {
+            if (!currentMaterialCode && !isEditMode) {
                 showToast('⚠️ ไม่พบข้อมูล Material Code', 'warning');
                 return;
             }
@@ -769,30 +887,14 @@ else
             }
             const parameterType = parameterTypeElement.value;
 
-            const docInspectionElement = document.getElementById('modalDocInspection');
-            if (!docInspectionElement) {
-                showToast('⚠️ ไม่พบ input ชื่อการตรวจสอบ', 'error');
-                return;
-            }
-            const docInspection = docInspectionElement.value.trim();
+            const docInspection = document.getElementById('modalDocInspection').value.trim();
             if (!docInspection) {
                 showToast('⚠️ กรุณากรอกชื่อการตรวจสอบ', 'warning');
                 return;
             }
 
-            const docUnitElement = document.getElementById('modalDocUnit');
-            if (!docUnitElement) {
-                showToast('⚠️ ไม่พบ dropdown หน่วย', 'error');
-                return;
-            }
-            const docUnit = docUnitElement.value;
-
-            const docDataTypeElement = document.querySelector('input[name="dataType"]:checked');
-            if (!docDataTypeElement) {
-                showToast('⚠️ กรุณาเลือกประเภทข้อมูล', 'warning');
-                return;
-            }
-            const docDataType = docDataTypeElement.value;
+            const docUnit = document.getElementById('modalDocUnit').value;
+            const docDataType = document.querySelector('input[name="dataType"]:checked')?.value;
 
             let docMin = null, docMax = null, docStd = null;
 
@@ -818,6 +920,7 @@ else
             }
 
             const requestData = {
+                docId: isEditMode ? currentParameterId : 0,
                 docFg: currentMaterialCode,
                 docFgItem: currentProductName,
                 docCustomer: '',
@@ -836,13 +939,19 @@ else
                 docDataType: docDataType
             };
 
-            const submitBtn = document.querySelector('#addParameterModal .btn-primary');
+            const submitBtn = document.getElementById('btnSubmitParameter');
             const originalText = submitBtn.innerHTML;
             submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>กำลังบันทึก...';
             submitBtn.disabled = true;
 
-            fetch('@Url.Action("AddInspectionParameter", "Material")', {
-                method: 'POST',
+            const url = isEditMode
+                ? '@Url.Action("Edit", "Material")'
+                : '@Url.Action("AddInspectionParameter", "Material")';
+
+            const method = 'POST';
+
+            fetch(url, {
+                method: method,
                 headers: {
                     'Content-Type': 'application/json',
                     'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
@@ -946,9 +1055,28 @@ else
         document.getElementById('addParameterModal')?.addEventListener('hidden.bs.modal', function() {
             const form = document.getElementById('addParameterForm');
             if (form) form.reset();
-            document.querySelector('input[name="parameterType"][value="number"]').checked = true;
-            document.querySelector('input[name="dataType"][value="ตัด"]').checked = true;
-            document.getElementById('numberInputsSection').classList.add('active');
+            // Reset mode tracking
+            isEditMode = false;
+            currentParameterId = null;
+
+            // Reset radio buttons (ตรวจสอบว่ามี element ก่อน)
+            const paramTypeRadio = document.querySelector('input[name="parameterType"][value="number"]');
+            const dataTypeRadio = document.querySelector('input[name="dataType"][value="ตัด"]');
+
+            if (paramTypeRadio) paramTypeRadio.checked = true;
+            if (dataTypeRadio) dataTypeRadio.checked = true;
+
+            // Reset sections
+            const numberSection = document.getElementById('numberInputsSection');
+            if (numberSection) numberSection.classList.add('active');
+
+            // Reset hidden input
+            const docIdInput = document.getElementById('parameterDocId');
+            if (docIdInput) docIdInput.value = '';
+
+            // Reset modal title
+            const modalTitle = document.getElementById('modalTitle');
+            if (modalTitle) modalTitle.textContent = 'เพิ่มพารามิเตอร์การตรวจสอบใหม่';
             updateDataTypeCardStyles();
             updateParameterTypeCardStyles();
         });
